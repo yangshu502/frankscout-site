@@ -1,0 +1,9 @@
+name = "frankscout-site"
+compatibility_date = "2026-07-08"
+
+assets = { directory = "./public" }
+
+routes = [
+  { pattern = "frankscout.com", custom_domain = true },
+  { pattern = "www.frankscout.com", custom_domain = true }
+]
