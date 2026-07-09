@@ -171,30 +171,29 @@ button {
 .brand-lockup {
   flex: 1 1 auto;
   min-width: 0;
-  gap: 10px;
+  gap: 9px;
   color: var(--brand-text);
-  font-size: 16px;
-  font-weight: 820;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .brand-mark {
-  width: 28px;
-  height: 28px;
+  width: 17px;
+  height: 17px;
   flex: 0 0 auto;
   justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--brand) 52%, transparent);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--brand) 14%, transparent);
   color: var(--brand-text);
-  font-size: 13px;
 }
 
-.brand-sub {
-  padding-left: 10px;
-  border-left: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 760;
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
 }
 
 .nav-actions {
@@ -208,14 +207,14 @@ button {
 .social-link,
 .wechat-trigger,
 .icon-button {
-  min-height: 34px;
-  border: 1px solid color-mix(in srgb, var(--brand) 34%, var(--border));
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--brand) 8%, transparent);
-  color: color-mix(in srgb, var(--foreground) 82%, var(--brand-text));
-  padding: 0 12px;
-  font-size: 13px;
-  font-weight: 760;
+  min-height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--secondary) 40%, transparent);
+  color: var(--muted);
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 650;
   transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
 }
 
@@ -224,9 +223,9 @@ button {
 .wechat-trigger:hover,
 .wechat-trigger[aria-expanded="true"],
 .icon-button:hover {
-  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
-  background: color-mix(in srgb, var(--brand) 12%, transparent);
-  color: var(--brand-text);
+  border-color: color-mix(in srgb, #07c160 40%, var(--border));
+  background: color-mix(in srgb, var(--secondary) 70%, transparent);
+  color: #07c160;
 }
 
 .social-link {
@@ -250,35 +249,49 @@ button {
 }
 
 .wechat-trigger {
-  gap: 6px;
+  gap: 5px;
   border-radius: 999px;
   cursor: pointer;
 }
 
 .wechat-icon {
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   display: inline-grid;
   place-items: center;
-  border-radius: 50%;
-  background: #07c160;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 900;
+  color: currentColor;
+}
+
+.wechat-icon svg,
+.theme-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wechat-icon svg,
+.theme-icon,
+.theme-icon path,
+.theme-icon circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
 }
 
 .wechat-popover {
   position: absolute;
   right: 0;
   top: calc(100% + 12px);
-  width: 188px;
+  width: 176px;
   display: grid;
-  gap: 9px;
-  padding: 14px;
-  border: 1px solid color-mix(in srgb, var(--brand) 28%, var(--border));
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--card) 98%, transparent);
-  box-shadow: 0 22px 60px color-mix(in srgb, #000 28%, transparent);
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 24px 68px color-mix(in srgb, #000 34%, transparent);
   color: var(--foreground);
   opacity: 0;
   pointer-events: none;
@@ -364,25 +377,30 @@ button {
 }
 
 .wechat-popover > span {
-  margin-top: -5px;
   text-align: center;
 }
 
 .icon-button {
-  width: 34px;
+  width: 28px;
+  min-height: 28px;
   justify-content: center;
   padding: 0;
   cursor: pointer;
 }
 
-.theme-dark .sun-icon,
-.theme-light .moon-icon {
+.theme-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.theme-dark .moon-icon,
+.theme-light .sun-icon {
   display: none;
 }
 
 .profile-link {
   gap: 7px;
-  min-height: 34px;
+  min-height: 32px;
   padding: 1px 2px 1px 0;
 }
 
@@ -497,17 +515,11 @@ main {
   width: 88px;
   height: 88px;
   overflow: hidden;
+  margin-bottom: 22px;
   border: 1px solid color-mix(in srgb, var(--brand) 58%, transparent);
   border-radius: 50%;
   background: color-mix(in srgb, var(--brand) 10%, transparent);
   box-shadow: 0 0 48px color-mix(in srgb, var(--brand) 24%, transparent);
-}
-
-.eyebrow {
-  margin: 22px 0 10px;
-  color: var(--brand-text);
-  font-size: 13px;
-  font-weight: 820;
 }
 
 h1 {
@@ -975,7 +987,6 @@ h1 {
 }
 
 @media (max-width: 760px) {
-  .brand-sub,
   .nav-pill.optional,
   .wechat-label {
     display: none;

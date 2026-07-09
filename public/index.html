@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Frank SCOUT</title>
-  <meta name="description" content="Frank SCOUT - 侦察早期机会，实操验证，谨慎收获。">
-  <meta property="og:title" content="Frank SCOUT">
+  <title>Frank Scout</title>
+  <meta name="description" content="Frank Scout - 侦察早期机会，实操验证，谨慎收获。">
+  <meta property="og:title" content="Frank Scout">
   <meta property="og:description" content="侦察早期机会，实操验证，谨慎收获。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://frankscout.com/assets/frank-avatar.png">
@@ -35,18 +35,24 @@
 
   <header class="topbar">
     <div class="nav-inner">
-      <a class="brand-lockup" href="/" aria-label="Frank SCOUT">
-        <span class="brand-mark">F</span>
-        <span>Frank SCOUT</span>
-        <span class="brand-sub">Scout Green</span>
+      <a class="brand-lockup" href="/" aria-label="Frank Scout">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8.5"></circle>
+            <path d="m14.8 8.2-2.1 6.1-5.5 1.5 2.1-6.1 5.5-1.5Z"></path>
+          </svg>
+        </span>
+        <span>Frank Scout</span>
       </a>
 
       <nav class="nav-actions" aria-label="Frank 入口">
-        <a class="nav-pill optional" href="#radar">雷达</a>
-        <a class="nav-pill optional" href="#field-notes">实操</a>
         <div class="wechat-wrap">
           <button class="wechat-trigger" type="button" data-wechat-target="personal" aria-expanded="false" title="加我个人微信">
-            <span class="wechat-icon">微</span>
+            <span class="wechat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.6a8.4 8.4 0 0 1-.9-3.9 8.5 8.5 0 0 1 17 0Z"></path>
+              </svg>
+            </span>
             <span class="wechat-label">加微信</span>
           </button>
           <div class="wechat-popover" data-wechat-panel="personal">
@@ -63,7 +69,11 @@
         </div>
         <div class="wechat-wrap">
           <button class="wechat-trigger" type="button" data-wechat-target="public" aria-expanded="false" title="微信公众号">
-            <span class="wechat-icon">微</span>
+            <span class="wechat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.6a8.4 8.4 0 0 1-.9-3.9 8.5 8.5 0 0 1 17 0Z"></path>
+              </svg>
+            </span>
             <span class="wechat-label">公众号</span>
           </button>
           <div class="wechat-popover" data-wechat-panel="public">
@@ -90,8 +100,13 @@
         </a>
         <span class="nav-separator" aria-hidden="true"></span>
         <button class="icon-button" type="button" data-theme-toggle aria-label="切换明暗主题">
-          <span class="sun-icon">☼</span>
-          <span class="moon-icon">☾</span>
+          <svg class="theme-icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v2.2M12 18.8V21M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M3 12h2.2M18.8 12H21M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"></path>
+            <circle cx="12" cy="12" r="4.2"></circle>
+          </svg>
+          <svg class="theme-icon moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.2 15.4A8 8 0 0 1 8.6 3.8 8.7 8.7 0 1 0 20.2 15.4Z"></path>
+          </svg>
         </button>
       </nav>
     </div>
@@ -103,10 +118,9 @@
         <div class="avatar-ring">
           <img src="./assets/frank-avatar.png" alt="Frank 头像">
         </div>
-        <p class="eyebrow">Scout Green / Sky Signal / Harvest Gold</p>
-        <h1 id="hero-title">Frank SCOUT</h1>
+        <h1 id="hero-title">Frank Scout</h1>
         <p class="hero-subtitle">开进田野，向远方侦察机会</p>
-        <p class="hero-note">我会记录那些刚冒头的工具、市场变化和实操机会：先侦察，后验证，再谨慎收获。主页细节还会继续调整，但 Frank 的视觉系统先从这套绿色规范开始。</p>
+        <p class="hero-note">我会记录那些刚冒头的工具、市场变化和实操机会：先侦察，后验证，再谨慎收获。</p>
         <div class="actions">
           <a class="button button-primary" href="https://x.com/frankscout2049" target="_blank" rel="noreferrer">关注 X 动态</a>
           <button class="button button-secondary" type="button" data-wechat-target="personal" aria-expanded="false">加 Frank 微信</button>
@@ -120,29 +134,8 @@
         <span class="radar-dot harvest" style="left: 70%; top: 60%" aria-hidden="true"></span>
         <span class="radar-dot signal" style="left: 52%; top: 72%" aria-hidden="true"></span>
         <div class="radar-label">
-          <strong>Field radar / sky signal</strong>
-          <span>绿色负责行动入口，蓝色负责数据坐标，金色只给高价值判断。</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Frank 色彩规范">
-      <div class="stat-strip">
-        <div class="stat-item">
-          <span class="stat-label">主交互</span>
-          <span class="stat-value">#39C86A</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">数据远方</span>
-          <span class="stat-value">#43B8F5</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">高价值提示</span>
-          <span class="stat-value">#F2A51A</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">默认暗色</span>
-          <span class="stat-value">#08110C</span>
+          <strong>Field radar</strong>
+          <span>把早期信号、实操路径和风险边界放到同一张图上。</span>
         </div>
       </div>
     </section>
@@ -218,7 +211,7 @@
       <p>「Scout Everything, Harvest Alpha.」</p>
       <div class="footer-rule" aria-hidden="true"></div>
     </div>
-    <p class="footer-meta">© 2026 FrankScout · Field Radar</p>
+    <p class="footer-meta">© 2026 Frank Scout · Field Radar</p>
   </footer>
 
   <script>
