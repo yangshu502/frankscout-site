@@ -25,6 +25,14 @@
   </script>
 </head>
 <body>
+  <div class="qr-lightbox" data-lightbox hidden>
+    <div class="qr-lightbox-card" role="dialog" aria-modal="true" aria-label="二维码预览">
+      <button class="qr-lightbox-close" type="button" data-lightbox-close aria-label="关闭二维码预览">&times;</button>
+      <img src="" alt="二维码" data-lightbox-image>
+      <p>对准摄像头扫码 · 或长按识别</p>
+    </div>
+  </div>
+
   <header class="topbar">
     <div class="nav-inner">
       <a class="brand-lockup" href="/" aria-label="Frank SCOUT">
@@ -36,27 +44,55 @@
       <nav class="nav-actions" aria-label="Frank 入口">
         <a class="nav-pill optional" href="#radar">雷达</a>
         <a class="nav-pill optional" href="#field-notes">实操</a>
-        <a class="social-link" href="https://x.com/frankscout2049" target="_blank" rel="noreferrer">
-          <span class="social-dot">X</span>
-          <span>@frankscout2049</span>
-        </a>
         <div class="wechat-wrap">
-          <button class="nav-pill wechat-button" type="button" data-wechat-toggle aria-expanded="false">
-            微信 / 公众号
+          <button class="wechat-trigger" type="button" data-wechat-target="personal" aria-expanded="false" title="加我个人微信">
+            <span class="wechat-icon">微</span>
+            <span class="wechat-label">加微信</span>
           </button>
-          <div class="wechat-panel" data-wechat-panel>
-            <img src="./assets/frank-wechat-qr.png" alt="Frank 微信二维码">
-            <strong>一棵杨树</strong>
-            <span>微信 / 公众号入口</span>
+          <div class="wechat-popover" data-wechat-panel="personal">
+            <div class="popover-head">
+              <span>个人微信</span>
+              <button type="button" data-wechat-close aria-label="关闭个人微信二维码">&times;</button>
+            </div>
+            <button class="qr-preview" type="button" data-qr-preview="./assets/frank-wechat-personal.jpg" aria-label="放大 Frank 个人微信二维码">
+              <img src="./assets/frank-wechat-personal.jpg" alt="Frank 个人微信二维码">
+            </button>
+            <strong>农民 Frank</strong>
+            <span>扫码加好友</span>
           </div>
         </div>
+        <div class="wechat-wrap">
+          <button class="wechat-trigger" type="button" data-wechat-target="public" aria-expanded="false" title="微信公众号">
+            <span class="wechat-icon">微</span>
+            <span class="wechat-label">公众号</span>
+          </button>
+          <div class="wechat-popover" data-wechat-panel="public">
+            <div class="popover-head">
+              <span>微信公众号</span>
+              <button type="button" data-wechat-close aria-label="关闭公众号二维码">&times;</button>
+            </div>
+            <button class="qr-preview" type="button" data-qr-preview="./assets/frank-wechat-public.jpg" aria-label="放大 Frank 公众号二维码">
+              <img src="./assets/frank-wechat-public.jpg" alt="Frank 公众号二维码">
+            </button>
+            <strong>农民 Frank</strong>
+            <span>微信扫码关注</span>
+          </div>
+        </div>
+        <a class="profile-link" href="https://x.com/frankscout2049" target="_blank" rel="noreferrer" title="@frankscout2049">
+          <span class="profile-avatar">
+            <img src="./assets/frank-avatar.png" alt="Frank 头像">
+            <span class="profile-status" aria-hidden="true"></span>
+          </span>
+          <span class="profile-meta">
+            <strong>Frank</strong>
+            <span>@frankscout2049</span>
+          </span>
+        </a>
+        <span class="nav-separator" aria-hidden="true"></span>
         <button class="icon-button" type="button" data-theme-toggle aria-label="切换明暗主题">
           <span class="sun-icon">☼</span>
           <span class="moon-icon">☾</span>
         </button>
-        <a class="avatar-link" href="https://x.com/frankscout2049" target="_blank" rel="noreferrer" aria-label="Frank X 主页">
-          <img src="./assets/frank-avatar.png" alt="Frank 头像">
-        </a>
       </nav>
     </div>
   </header>
@@ -73,7 +109,7 @@
         <p class="hero-note">我会记录那些刚冒头的工具、市场变化和实操机会：先侦察，后验证，再谨慎收获。主页细节还会继续调整，但 Frank 的视觉系统先从这套绿色规范开始。</p>
         <div class="actions">
           <a class="button button-primary" href="https://x.com/frankscout2049" target="_blank" rel="noreferrer">关注 X 动态</a>
-          <button class="button button-secondary" type="button" data-wechat-toggle>微信 / 公众号</button>
+          <button class="button button-secondary" type="button" data-wechat-target="personal" aria-expanded="false">加 Frank 微信</button>
         </div>
       </div>
 
@@ -152,11 +188,24 @@
       </div>
       <div class="contact-actions">
         <a class="button button-primary" href="https://x.com/frankscout2049" target="_blank" rel="noreferrer">@frankscout2049</a>
-        <div class="qr-card">
-          <img src="./assets/frank-wechat-qr.png" alt="Frank 微信二维码">
-          <div>
-            <strong>一棵杨树</strong>
-            <span>微信 / 公众号</span>
+        <div class="qr-grid">
+          <div class="qr-card">
+            <button class="qr-thumb" type="button" data-qr-preview="./assets/frank-wechat-personal.jpg" aria-label="放大 Frank 个人微信二维码">
+              <img src="./assets/frank-wechat-personal.jpg" alt="Frank 个人微信二维码">
+            </button>
+            <div>
+              <strong>个人微信</strong>
+              <span>扫码加好友</span>
+            </div>
+          </div>
+          <div class="qr-card">
+            <button class="qr-thumb" type="button" data-qr-preview="./assets/frank-wechat-public.jpg" aria-label="放大 Frank 公众号二维码">
+              <img src="./assets/frank-wechat-public.jpg" alt="Frank 公众号二维码">
+            </button>
+            <div>
+              <strong>公众号</strong>
+              <span>微信扫码关注</span>
+            </div>
           </div>
         </div>
       </div>
@@ -164,9 +213,12 @@
   </main>
 
   <footer class="footer">
-    <div class="footer-line"></div>
-    <strong>Scout wide, test small, harvest carefully</strong>
-    <span>FrankScout.com</span>
+    <div class="footer-slogan">
+      <div class="footer-rule" aria-hidden="true"></div>
+      <p>「Scout Everything, Harvest Alpha.」</p>
+      <div class="footer-rule" aria-hidden="true"></div>
+    </div>
+    <p class="footer-meta">© 2026 FrankScout · Field Radar</p>
   </footer>
 
   <script>
@@ -174,8 +226,40 @@
       var themeKey = 'frankscout_theme';
       var root = document.documentElement;
       var themeButton = document.querySelector('[data-theme-toggle]');
-      var wechatButtons = document.querySelectorAll('[data-wechat-toggle]');
-      var wechatPanel = document.querySelector('[data-wechat-panel]');
+      var wechatButtons = document.querySelectorAll('[data-wechat-target]');
+      var wechatPanels = document.querySelectorAll('[data-wechat-panel]');
+      var wechatCloseButtons = document.querySelectorAll('[data-wechat-close]');
+      var qrPreviewButtons = document.querySelectorAll('[data-qr-preview]');
+      var lightbox = document.querySelector('[data-lightbox]');
+      var lightboxImage = document.querySelector('[data-lightbox-image]');
+      var lightboxClose = document.querySelector('[data-lightbox-close]');
+      var activeWechat = null;
+
+      function closeWechat() {
+        activeWechat = null;
+        wechatPanels.forEach(function (panel) {
+          panel.classList.remove('is-open');
+        });
+        wechatButtons.forEach(function (button) {
+          button.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      function setWechatPanel(target) {
+        activeWechat = activeWechat === target ? null : target;
+        wechatPanels.forEach(function (panel) {
+          panel.classList.toggle('is-open', panel.getAttribute('data-wechat-panel') === activeWechat);
+        });
+        wechatButtons.forEach(function (button) {
+          button.setAttribute('aria-expanded', button.getAttribute('data-wechat-target') === activeWechat ? 'true' : 'false');
+        });
+      }
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImage) return;
+        lightbox.hidden = true;
+        lightboxImage.removeAttribute('src');
+      }
 
       if (themeButton) {
         themeButton.addEventListener('click', function () {
@@ -188,22 +272,46 @@
 
       wechatButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-          document.body.classList.toggle('wechat-open');
-          var expanded = document.body.classList.contains('wechat-open');
-          wechatButtons.forEach(function (item) {
-            item.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-          });
+          setWechatPanel(button.getAttribute('data-wechat-target'));
         });
       });
 
+      wechatCloseButtons.forEach(function (button) {
+        button.addEventListener('click', closeWechat);
+      });
+
+      qrPreviewButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var src = button.getAttribute('data-qr-preview');
+          var img = button.querySelector('img');
+          if (!src || !lightbox || !lightboxImage) return;
+          lightboxImage.src = src;
+          lightboxImage.alt = img ? img.alt : '二维码';
+          lightbox.hidden = false;
+        });
+      });
+
+      if (lightbox) {
+        lightbox.addEventListener('click', function (event) {
+          if (event.target === lightbox) closeLightbox();
+        });
+      }
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
       document.addEventListener('click', function (event) {
-        if (!wechatPanel || event.target.closest('[data-wechat-toggle]') || event.target.closest('[data-wechat-panel]')) {
+        if (event.target.closest('[data-wechat-target]') || event.target.closest('[data-wechat-panel]')) {
           return;
         }
-        document.body.classList.remove('wechat-open');
-        wechatButtons.forEach(function (item) {
-          item.setAttribute('aria-expanded', 'false');
-        });
+        closeWechat();
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+        closeWechat();
+        closeLightbox();
       });
     })();
   </script>

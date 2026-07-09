@@ -76,6 +76,64 @@ button {
   outline-offset: 3px;
 }
 
+.qr-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.86);
+  backdrop-filter: blur(6px);
+}
+
+.qr-lightbox[hidden] {
+  display: none;
+}
+
+.qr-lightbox-card {
+  position: relative;
+  width: min(320px, 100%);
+  border-radius: 18px;
+  background: #fff;
+  padding: 18px;
+  color: #0f1412;
+  text-align: center;
+  box-shadow: 0 28px 88px rgba(0, 0, 0, 0.42);
+}
+
+.qr-lightbox-card img {
+  width: 100%;
+  max-height: min(74vh, 460px);
+  display: block;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.qr-lightbox-card p {
+  margin: 12px 0 0;
+  color: #8b8f8d;
+  font-size: 12px;
+}
+
+.qr-lightbox-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #0f1412;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 800;
+}
+
 .topbar {
   position: sticky;
   top: 0;
@@ -97,16 +155,21 @@ button {
 }
 
 .brand-lockup,
+.brand-mark,
 .nav-actions,
 .social-link,
 .avatar-link,
+.profile-link,
+.profile-avatar,
 .nav-pill,
+.wechat-trigger,
 .icon-button {
   display: inline-flex;
   align-items: center;
 }
 
 .brand-lockup {
+  flex: 1 1 auto;
   min-width: 0;
   gap: 10px;
   color: var(--brand-text);
@@ -136,12 +199,14 @@ button {
 
 .nav-actions {
   position: relative;
+  flex: 0 0 auto;
   justify-content: flex-end;
   gap: 8px;
 }
 
 .nav-pill,
 .social-link,
+.wechat-trigger,
 .icon-button {
   min-height: 34px;
   border: 1px solid color-mix(in srgb, var(--brand) 34%, var(--border));
@@ -156,6 +221,8 @@ button {
 
 .nav-pill:hover,
 .social-link:hover,
+.wechat-trigger:hover,
+.wechat-trigger[aria-expanded="true"],
 .icon-button:hover {
   border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
   background: color-mix(in srgb, var(--brand) 12%, transparent);
@@ -182,18 +249,32 @@ button {
   position: relative;
 }
 
-.wechat-button {
+.wechat-trigger {
+  gap: 6px;
+  border-radius: 999px;
   cursor: pointer;
 }
 
-.wechat-panel {
+.wechat-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #07c160;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.wechat-popover {
   position: absolute;
   right: 0;
   top: calc(100% + 12px);
-  width: 204px;
+  width: 188px;
   display: grid;
-  gap: 8px;
-  padding: 12px;
+  gap: 9px;
+  padding: 14px;
   border: 1px solid color-mix(in srgb, var(--brand) 28%, var(--border));
   border-radius: 14px;
   background: color-mix(in srgb, var(--card) 98%, transparent);
@@ -205,28 +286,86 @@ button {
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.wechat-wrap:hover .wechat-panel,
-body.wechat-open .wechat-panel {
+.wechat-popover.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
 
-.wechat-panel img {
-  width: 100%;
-  display: block;
-  border-radius: 10px;
-  background: #fff;
+.popover-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 760;
 }
 
-.wechat-panel strong,
-.wechat-panel span {
+.popover-head button {
+  width: 20px;
+  height: 20px;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.popover-head button:hover {
+  color: var(--foreground);
+}
+
+.qr-preview {
+  width: 100%;
+  min-height: 176px;
+  max-height: 236px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0;
+  cursor: zoom-in;
+}
+
+.qr-preview img {
+  width: 100%;
+  max-height: 236px;
+  display: block;
+  object-fit: contain;
+  transition: transform 150ms ease;
+}
+
+.qr-preview:hover img {
+  transform: scale(1.035);
+}
+
+.wechat-popover strong,
+.wechat-popover span {
   padding: 0 2px;
 }
 
-.wechat-panel span {
+.wechat-popover span {
   color: var(--muted);
   font-size: 12px;
+}
+
+.wechat-popover strong {
+  color: var(--foreground);
+  font-size: 12px;
+  text-align: center;
+}
+
+.wechat-popover > span {
+  margin-top: -5px;
+  text-align: center;
 }
 
 .icon-button {
@@ -239,6 +378,81 @@ body.wechat-open .wechat-panel {
 .theme-dark .sun-icon,
 .theme-light .moon-icon {
   display: none;
+}
+
+.profile-link {
+  gap: 7px;
+  min-height: 34px;
+  padding: 1px 2px 1px 0;
+}
+
+.profile-avatar {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  justify-content: center;
+  overflow: visible;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 2px solid color-mix(in srgb, var(--brand) 30%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  object-fit: cover;
+  transition: border-color 180ms ease;
+}
+
+.profile-status {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--background);
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.profile-meta {
+  display: block;
+  line-height: 1.1;
+}
+
+.profile-meta strong,
+.profile-meta span {
+  display: block;
+}
+
+.profile-meta strong {
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 760;
+  transition: color 180ms ease;
+}
+
+.profile-meta span {
+  margin-top: 2px;
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+  font-size: 10px;
+}
+
+.profile-link:hover .profile-avatar img {
+  border-color: color-mix(in srgb, var(--brand) 70%, transparent);
+}
+
+.profile-link:hover .profile-meta strong {
+  color: var(--brand-text);
+}
+
+.nav-separator {
+  width: 1px;
+  height: 18px;
+  margin: 0 2px;
+  background: color-mix(in srgb, var(--border) 72%, transparent);
 }
 
 .avatar-link {
@@ -630,10 +844,16 @@ h1 {
   justify-items: end;
 }
 
-.qr-card {
-  width: 220px;
+.qr-grid {
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(178px, 1fr));
+  gap: 12px;
+}
+
+.qr-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
   gap: 12px;
   align-items: center;
   border: 1px solid var(--border);
@@ -642,14 +862,31 @@ h1 {
   padding: 10px;
 }
 
-.qr-card img {
-  width: 76px;
-  height: 76px;
-  display: block;
+.qr-thumb {
+  width: 82px;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
   border-radius: 8px;
+  background: #fff;
+  padding: 0;
+  cursor: zoom-in;
+}
+
+.qr-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: contain;
   object-position: center;
-  background: #fff;
+  transition: transform 150ms ease;
+}
+
+.qr-thumb:hover img {
+  transform: scale(1.035);
 }
 
 .qr-card strong,
@@ -666,24 +903,49 @@ h1 {
 .footer {
   width: min(1152px, 100%);
   display: grid;
-  gap: 8px;
   margin: 0 auto;
-  padding: 32px 24px 44px;
+  padding: 38px 24px 46px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
   color: var(--muted);
   text-align: center;
 }
 
-.footer-line {
+.footer-slogan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.footer-rule {
+  width: 82px;
   height: 1px;
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--brand) 50%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--brand) 44%, transparent));
 }
 
-.footer strong {
-  color: var(--foreground);
+.footer-rule:last-child {
+  background: linear-gradient(270deg, transparent, color-mix(in srgb, var(--brand) 44%, transparent));
 }
 
+.footer-slogan p {
+  margin: 0;
+  color: color-mix(in srgb, var(--brand-text) 80%, transparent);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.32em;
+}
+
+.footer-meta {
+  margin: 14px 0 0;
+  color: color-mix(in srgb, var(--muted) 32%, transparent);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
 @media (max-width: 980px) {
+  .profile-meta {
+    display: none;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -715,7 +977,7 @@ h1 {
 @media (max-width: 760px) {
   .brand-sub,
   .nav-pill.optional,
-  .social-link span:last-child {
+  .wechat-label {
     display: none;
   }
 
@@ -756,34 +1018,54 @@ h1 {
     min-height: 360px;
   }
 
-  .wechat-panel {
-    right: -66px;
+  .wechat-popover {
+    right: -58px;
   }
 
   .contact-section {
     padding: 20px;
   }
 
+  .qr-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
   .qr-card {
     width: 100%;
   }
+
+  .footer-slogan {
+    gap: 12px;
+  }
+
+  .footer-rule {
+    width: 36px;
+  }
+
+  .footer-slogan p {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 560px) {
   .brand-lockup span:nth-child(2) {
-    max-width: 116px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: none;
   }
 
-  .wechat-button {
-    max-width: 78px;
-    overflow: hidden;
-    white-space: nowrap;
+  .wechat-trigger {
+    width: 34px;
+    padding: 0;
+    justify-content: center;
   }
 
-  .avatar-link {
+  .profile-link {
+    padding-right: 0;
+  }
+
+  .nav-separator,
+  .icon-button {
     display: none;
   }
 }
